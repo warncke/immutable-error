@@ -7,7 +7,7 @@ Immutable Error provides harmonized error generator for modules in the
 
     var immutableError = new ImmutableError({
         class: 'Foo',
-        codes: {
+        errorCodes: {
             100: 'foo error'
         },
         nameProperty: 'foo',
