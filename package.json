@@ -1,0 +1,26 @@
+{
+  "author": "Ersun Warncke <ersun.warncke@gmail.com>",
+  "dependencies": {
+    "if-defined": "1.0.14",
+    "lodash": "4.17.4"
+  },
+  "description": "Generate errors for Immutable App ecosystem modules",
+  "devDependencies": {
+    "chai": "4.1.2",
+    "mocha": "3.5.3"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "engines": {
+    "node": ">=7.6.0"
+  },
+  "license": "MIT",
+  "main": "lib/immutable-error.js",
+  "name": "immutable-error",
+  "repository": "warncke/immutable-error",
+  "scripts": {
+    "test": "mocha"
+  },
+  "version": "0.1.0"
+}
