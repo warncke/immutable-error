@@ -3,7 +3,7 @@
 Immutable Error provides harmonized error generator for modules in the
 [Immutable App](https://www.npmjs.com/package/immutable-app) ecosystem.
 
-## Creating a new error instance
+## Creating a new error generator instance
 
     var immutableError = new ImmutableError({
         class: 'Foo',
@@ -27,11 +27,19 @@ the error occured with if both are set.
 
 ## error
 
-    var error = immutableError.error(this, 100)
+    var error = immutableError.error(this, 100, 'foo error', err, {foo: true})
 
-The `error` method generates and returns a new Error. The first arguments is
-the instance context that the error was generated in. This may be null. The
-second argument is the error code.
+The `error` method generates and returns a new Error.
+
+The arguments to error are:
+
+* instance - the instance (this) context that the error occurred in
+* code - the error code
+* message - a custom error message
+* error - the original Error object if re-throwing a caught error
+* data - any additional error data to include
+
+All arguments are optional and an error will always be generated.
 
 ## assert
 
@@ -89,11 +97,19 @@ The error codes defined by modules must be three digits starting with 100.
 
 The error code will be used to lookup the default message for the error.
 
-For modules that are registered the error code will be appended to a two digit
-prefix that identifies the module that generated the error.
+For registered classes the error code will be appended to a two digit prefix
+that identifies the class that generated the error.
 
-If the module generating the error is not registered then the error code will
+If the class generating the error is not registered then the error code will
 always be 10000.
 
-For modules that are registered where an error code is not specified the
-error code will be the module prefix followed by three zeros.
+For classes that are registered where an error code is not specified the
+error code will be the class prefix followed by three zeros.
+
+The three digit error code will always be stored in `error.data.internalCode`.
+
+### Registered classes
+
+| base code | class                                                            |
+|-----------|------------------------------------------------------------------|
+| 20000     | ImmutableAppComponent                                            |
